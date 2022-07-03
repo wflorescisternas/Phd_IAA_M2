@@ -35,6 +35,30 @@ public class Particle extends Problem {
 		return checkConstraint(x);
 	}
 
+	//Se crea el metodo para poder utilizar la ubicación de c1, se llama desde swarm.
+	protected int minimo_maximo() {
+		int maximo = weight[0]; // Declaramos e inicializamos el máximo.
+	
+		for (int i = 0; i < weight.length(); i++){
+			if (maximo < weight[i])
+				maximo = weight[i];
+		}
+		return maximo(maximo);
+	}
+
+	//Se crea el metodo para poder utilizar la ubicación de c1, se llama desde swarm.
+	protected int minimo() {
+		int minimo = weight[0]; // Declaramos e inicializamos el máximo.
+	
+		for (int i = 0; i < weight.length(); i++){
+			if (minimo > weight[i])
+				minimo = weight[i];
+		}
+		return minimo(minimo);
+	}
+
+
+
 	protected void move(Particle g, int ub, int lb, int maxIteracion) {
 		//l1 es el mayor y el l2 el minimo de los registros
 		//dentro de los registros de la matriz

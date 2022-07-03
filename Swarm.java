@@ -31,14 +31,21 @@ public class Swarm {
 		log(0);
 	}
 
+
+
+
 	private void evolve() {
 		int t = 1;
 		while (t <= MaxIter) {
 			Particle p = new Particle();
+			//se le debe pasar el minimo y el maximo del arreglo para que encuntre el c1
+			int ub=particle.minimo();
+			int lb=particle.maximo();
 			for (int i = 0; i < ps; i++) {
 				do {
 					p.copy(swarm.get(i));
 					// protected void move(Particle g, int ub, int lb, int maxIteracion) 
+
 					p.move(g, ub,lb, maxIteracion);
 				} while (!p.isFeasible());
 				if (p.isBetterThanPBest())
