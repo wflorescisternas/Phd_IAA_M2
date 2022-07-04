@@ -1,3 +1,4 @@
+
 public class Particle extends Problem {
 
 	private int[] x = new int[nVars];
@@ -36,43 +37,48 @@ public class Particle extends Problem {
 	}
 
 	//Se crea el metodo para poder utilizar la ubicación de c1, se llama desde swarm.
-	protected int minimo_maximo() {
-		int maximo = weight[0]; // Declaramos e inicializamos el máximo.
+/*	
+	protected int maximo() {
+		int v_maximo = weight[0]; // Declaramos e inicializamos el máximo.
 	
 		for (int i = 0; i < weight.length(); i++){
-			if (maximo < weight[i])
-				maximo = weight[i];
+			if (v_maximo < weight[i])
+				v_maximo = weight[i];
 		}
-		return maximo(maximo);
+		return v_maximo;
 	}
+*/
 
 	//Se crea el metodo para poder utilizar la ubicación de c1, se llama desde swarm.
+/*
 	protected int minimo() {
-		int minimo = weight[0]; // Declaramos e inicializamos el máximo.
+		int v_minimo = weight[0]; // Declaramos e inicializamos el máximo.
 	
 		for (int i = 0; i < weight.length(); i++){
-			if (minimo > weight[i])
-				minimo = weight[i];
+			if (v_minimo > weight[i])
+				v_minimo = weight[i];
 		}
-		return minimo(minimo);
+		return v_minimo;
 	}
-
+*/
 
 
 	protected void move(Particle g, int ub, int lb, int maxIteracion) {
 		//l1 es el mayor y el l2 el minimo de los registros
 		//dentro de los registros de la matriz
-		for (int j = 0; j < nVars; j++) {
+			double c1=Math.pow(2*Math.E,Math.pow(-(4/maxIteracion),2));
+			double c2=(Math.random())/10;
+			double c3=(Math.random())/10;
 
-			float c1=2*Math.E^-((4*j/maxIteracion)^2)
-			float c2=StdRandom.uniform() ;
-			float c3=StdRandom.uniform() ;
+
+		for (int j = 0; j < nVars; j++) {
+			
 			//F=1 corresponde al alimento dentro de la mejor posición.
 
 			int f=1;
 
-			for (int k=0;j<iteracion;k++){
-				if k < iteracion/2 {
+			for (int k=0;j<maxIteracion;k++){
+				if (k < maxIteracion/2) {
 					if (j==1){
 						//Se considero en eliminar el alimento (F) el cual se encuentra en el paper, pagina 6/29
 						if (c3 >=0.5){
@@ -83,11 +89,11 @@ public class Particle extends Problem {
 						}	
 					}
 						else {
-						v[j] =(1/2)*(v[j]+v[j-1])
+						v[j] =(0.5)*(v[j]+v[j-1]);
 					}
 					x[j] = toBinary(x[j] + v[j]);
 					//ecuación 3.4
-				}else if k>=iteracion/2 && k<iteracion+1{
+				}else {
 					x[k] = (x[k]+x[k-1])/2;
 				}
 			}

@@ -1,7 +1,8 @@
+
 public class Main {
 
 	public static void main(String[] args) {
-		for (j=0; j<30;j++){
+		for (int j=0; j<30;j++){
 		try {
 			new Swarm().execute();
 		} catch (Exception e) {

@@ -3,10 +3,11 @@ public class Swarm {
 	private final int ps = 25;
 	//private final float theta = 0.9f, alpha = 2f, beta = 2f;
 	private final int MaxIter = 1000;
-	private final float lb,ub = 100;
+	private final int lb = 100;
+	private final int ub = 100;
 	private java.util.List<Particle> swarm = null;
 	private Particle g = null;
-	private final int l1=0, l2=MaxIter;
+ 
 
 	public void execute() {
 		initRand();
@@ -39,14 +40,13 @@ public class Swarm {
 		while (t <= MaxIter) {
 			Particle p = new Particle();
 			//se le debe pasar el minimo y el maximo del arreglo para que encuntre el c1
-			int ub=particle.minimo();
-			int lb=particle.maximo();
+			//int ub = particle.minimo();
+			//int lb = particle.maximo();
 			for (int i = 0; i < ps; i++) {
 				do {
 					p.copy(swarm.get(i));
 					// protected void move(Particle g, int ub, int lb, int maxIteracion) 
-
-					p.move(g, ub,lb, maxIteracion);
+					p.move(g, ub,lb, MaxIter);
 				} while (!p.isFeasible());
 				if (p.isBetterThanPBest())
 					p.updatePBest();
@@ -63,5 +63,6 @@ public class Swarm {
 
 	private void log(int t) {
 		StdOut.printf("t=%d,\t%s\n", t, g);
+		
 	}
 }
