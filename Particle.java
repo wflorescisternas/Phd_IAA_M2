@@ -94,7 +94,7 @@ public class Particle extends Problem {
 			/* Actualizar velocidad */
 			//v[j] = v[j] * theta + alpha * StdRandom.uniform() * (g.p[j] - x[j]) + beta * StdRandom.uniform() * (p[j] - x[j]);
 			/* Actualizar posicion */
-			//x[j] = toBinary(x[j] + v[j]);
+			x[j] = toBinary(x[j] + v[j]);
 		}
 	}
 
