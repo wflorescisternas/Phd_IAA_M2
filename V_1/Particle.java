@@ -36,7 +36,7 @@ public class Particle extends Problem {
 		return checkConstraint(x);
 	}
 
-	//Se crea el metodo para poder utilizar la ubicación de c1, se llama desde swarm.
+//Se crea el metodo para poder utilizar la ubicación de c1, se llama desde swarm.
 /*	
 	protected int maximo() {
 		int v_maximo = weight[0]; // Declaramos e inicializamos el máximo.
@@ -63,6 +63,17 @@ public class Particle extends Problem {
 */
 
 
+protected void move(Particle g, float theta, float alpha, float beta) {
+	for (int j = 0; j < nVars; j++) {
+		/* Actualizar velocidad */
+		v[j] = v[j] * theta + alpha * StdRandom.uniform() * (g.p[j] - x[j]) + beta * StdRandom.uniform() * (p[j] - x[j]);
+		/* Actualizar posicion */
+		x[j] = toBinary(x[j] + v[j]);
+	}
+}
+
+
+/*
 	protected void move(Particle g, int ub, int lb, int maxIteracion) {
 		//l1 es el mayor y el l2 el minimo de los registros
 		//dentro de los registros de la matriz
@@ -96,14 +107,15 @@ public class Particle extends Problem {
 				}else {
 					x[k] = (x[k]+x[k-1])/2;
 				}
-			}
-			/* Actualizar velocidad */
+			} 
+			// Actualizar velocidad 
 			//v[j] = v[j] * theta + alpha * StdRandom.uniform() * (g.p[j] - x[j]) + beta * StdRandom.uniform() * (p[j] - x[j]);
-			/* Actualizar posicion */
+			//Actualizar posicion 
 			x[j] = toBinary(x[j] + v[j]);
 		}
 	}
-
+	*/
+	
 	private float diff() {
 		return computeFitness(p) - optimum();
 	}
