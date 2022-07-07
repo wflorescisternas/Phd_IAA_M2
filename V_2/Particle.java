@@ -4,6 +4,8 @@ public class Particle extends Problem {
 	private int[] p = new int[nVars];
 	private double[] v = new double[nVars];
 
+		//nVars es la cantidad de registros que tiene el problema (arreglo)
+
 	public Particle() {
 		for (int j = 0; j < nVars; j++) {
 			x[j] = StdRandom.uniform(2);
@@ -34,13 +36,25 @@ public class Particle extends Problem {
 	protected boolean isFeasible() {
 		return checkConstraint(x);
 	}
-
-	protected void move(Particle g, float theta, float alpha, float beta) {
+	//protected void move(Particle g, double theta, double alpha, double beta)
+	protected void move(int F, double c1, double c2, double c3, int ub, int lb) {
+	
 		for (int j = 0; j < nVars; j++) {
-			/* Actualizar velocidad */
-			v[j] = v[j] * theta + alpha * StdRandom.uniform() * (g.p[j] - x[j]) + beta * StdRandom.uniform() * (p[j] - x[j]);
+			if (j==0){
+				// actualizar el lider de las salpas: ecuación 3.1
+				// Consideramos F=1 solo por que la comida es el punto inicial.
+				if (c3>=0){
+					v[j]= F + c1 * ((ub - lb) * c2 + lb);
+				} else {
+					v[j]= F - c1 * ((ub - lb) * c2 + lb);
+				}
+			} else {
+				//Actualizamos la posición de las salpas: ecuación 3.4
+				v[j]=(0.5)*(v[j]+v[j-1]);
+			}  
 			/* Actualizar posicion */
-			x[j] = toBinary(x[j] + v[j]);
+			//x[j] = toBinary(x[j] + v[j]);
+			x[j] = toBinary(v[j]);
 		}
 	}
 
@@ -70,7 +84,9 @@ public class Particle extends Problem {
 
 	@Override
 	public String toString() {
-		return String.format("optimal value: %d, fitness: %d, diff: %.1f, rpd: %.2f%%, p: %s", optimum(),
-				computeFitnessPBest(), diff(), rpd(), showSolution());
+		//return String.format("Valor Optimo: %d, fitness: %d, diff: %.1f, rpd: %.2f%%, p: %s", optimum(),
+		//		computeFitnessPBest(), diff(), rpd(), showSolution());
+		return String.format("Valor_Optimo: %d; fitness: %d; diff: %.1f; rpd: %.2f%%", optimum(),
+				computeFitnessPBest(), diff(), rpd());
 	}
 }
