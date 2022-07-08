@@ -6,8 +6,10 @@ public class Swarm {
 	private Particle g = null;
 
 	public void execute() {
+	for (int k=0; k<30; k++){
 		initRand();
 		evolve();
+		}
 	}
 
 	private void initRand() {
@@ -25,7 +27,7 @@ public class Swarm {
 		for (int i = 1; i < ps; i++)
 			if (swarm.get(i).isBetterThan(g))
 					g.copy(swarm.get(i));
-		log(0);
+		//log(0);
 	}
 
 	private void evolve() {
@@ -37,7 +39,7 @@ public class Swarm {
 		double c3 = StdRandom.uniform();
 		double c1 = Math.pow(2*Math.E,Math.pow(-(4*t/MaxIter),2));
 
-		while (t <= MaxIter) {
+		while (t < MaxIter) {
 			Particle p = new Particle();
 			
 			for (int i = 0; i < ps; i++) {
@@ -52,7 +54,10 @@ public class Swarm {
 			for (int i = 0; i < ps; i++)
 				if (swarm.get(i).isBetterThan(g))
 					g.copy(swarm.get(i));
-			log(t);
+			//log(t);
+			if (t==999){
+				log(t);
+			}
 			t++;
 		}
 	}

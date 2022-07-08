@@ -4,7 +4,7 @@ public class Particle extends Problem {
 	private int[] p = new int[nVars];
 	private double[] v = new double[nVars];
 
-		//nVars es la cantidad de registros que tiene el problema (arreglo)
+	//nVars es la cantidad de registros que tiene el problema (arreglo)
 
 	public Particle() {
 		for (int j = 0; j < nVars; j++) {
@@ -86,7 +86,7 @@ public class Particle extends Problem {
 	public String toString() {
 		//return String.format("Valor Optimo: %d, fitness: %d, diff: %.1f, rpd: %.2f%%, p: %s", optimum(),
 		//		computeFitnessPBest(), diff(), rpd(), showSolution());
-		return String.format("Valor_Optimo: %d; fitness: %d; diff: %.1f; rpd: %.2f%%", optimum(),
+		return String.format("Valor_Optimo: %d, fitness: %d, diff: %.1f, rpd: %.2f%%", optimum(),
 				computeFitnessPBest(), diff(), rpd());
 	}
 }
